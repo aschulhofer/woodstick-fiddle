@@ -1,0 +1,9 @@
+# Generated
+bin
+target
+logs
+
+# IDEs
+.project
+.classpath
+.settings

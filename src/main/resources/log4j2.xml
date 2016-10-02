@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Properties>
+		<Property name="DefaultPattern">%d{DEFAULT} [%t] %-5level %logger{36} - %msg%n</Property>
+	</Properties>
+
+	<Appenders>
+		<Console name="STDOUT">
+			<PatternLayout pattern="${DefaultPattern}" />
+		</Console>
+
+		<RollingFile name="RollingFile" fileName="logs/app.log"
+			filePattern="logs/$${date:yyyy-MM}/app-%d{yyyy-MM-dd}-%i.log">
+			<PatternLayout pattern="${DefaultPattern}" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="100MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="50"/>
+		</RollingFile>
+	</Appenders>
+
+	<Loggers>
+		<Logger name="at.woodstick" level="debug">
+			<AppenderRef ref="RollingFile" />
+			<AppenderRef ref="STDOUT" level="info" />
+		</Logger>
+
+		<Root level="debug">
+			
+		</Root>
+
+	</Loggers>
+
+
+</Configuration>
